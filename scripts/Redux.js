@@ -5,12 +5,13 @@ const createSubscriber=(initialValue = null)=>{
         subscribe: (subscriber) => {
             subscribers.push(subscriber);
             subscriber(value);
-            return () => {
+            return () => { //unsubscribe
                 subscribers = subscribers.filter(s => s !== subscriber);
             }
         },
-        next: (value) => {
-            subscribers.forEach(subscriber => subscriber(value));
+        next: (v) => {
+            value = v;
+            subscribers.forEach(subscriber => subscriber(v));
         }
     }
 }
