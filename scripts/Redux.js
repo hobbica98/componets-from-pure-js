@@ -1,4 +1,4 @@
-const createSubscriber=(initialValue = null)=>{
+const createObservable = (initialValue = null) => {
     let value = initialValue;
     let subscribers = [];
     return {
@@ -9,7 +9,7 @@ const createSubscriber=(initialValue = null)=>{
                 subscribers = subscribers.filter(s => s !== subscriber);
             }
         },
-        next: (v) => {
+        notify: (v) => {
             value = v;
             subscribers.forEach(subscriber => subscriber(v));
         }
@@ -17,8 +17,8 @@ const createSubscriber=(initialValue = null)=>{
 }
 export const Store = {
     state: {
-        ['AppName']: createSubscriber('app'),
-        ['Version']: createSubscriber('1.0.0'),
+        ['AppName']: createObservable('app'),
+        ['Version']: createObservable('1.0.0'),
     },
     changeState(attribute, value) {
         this.state[attribute].next(value)
