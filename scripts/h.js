@@ -8,6 +8,13 @@ function render(vdom, context) {
             context.appendChild(document.createTextNode(vdom))
             return;
         }
+        if (typeof vdom.type === 'function') {
+            const dom = document.createElement('div');
+            dom.setAttribute('name', vdom.type.name);
+            context.appendChild(dom);
+            vdom.type(dom, vdom.props);
+            return;
+        }
         const dom = document.createElement(vdom.type);
         for (let name in vdom.props) {
             if (name.startsWith('on')) {

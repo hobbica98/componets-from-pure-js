@@ -1,5 +1,5 @@
 import {render} from '../h.js'
-import {type as HeaderType} from "./Header.js";
+import {Header} from "./Header.js";
 
 export function Home(context) {
     render({
@@ -7,7 +7,7 @@ export function Home(context) {
         props: {style: 'display: flex; flex-direction: column; height: 100vh; width: 100vw'},
         children: [
             {
-                type: 'div', props: {name: HeaderType},
+                type: Header,
             },
             {
                 type: 'div', props: {style: 'background-color: #422331;flex:1'},
@@ -19,4 +19,3 @@ export function Home(context) {
     }, context);
 }
 
-export const type = 'HomeComponent';

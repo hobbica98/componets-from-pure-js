@@ -13,4 +13,3 @@ export function Header(context) {
     render({type: 'h3', props: {onClick: click}, children: [appName]}, context);
 }
 
-export const type = 'HeaderComponent';
