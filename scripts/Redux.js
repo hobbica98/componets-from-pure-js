@@ -21,7 +21,7 @@ export const Store = {
         ['Version']: createObservable('1.0.0'),
     },
     changeState(attribute, value) {
-        this.state[attribute].next(value)
+        this.state[attribute].notify(value)
     },
     getState(attribute) {
         return this.state[attribute]
