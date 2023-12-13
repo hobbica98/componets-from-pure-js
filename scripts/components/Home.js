@@ -1,5 +1,6 @@
 import {render} from '../h.js'
 import {Header} from "./Header.js";
+import {Store} from "../Redux.js";
 
 export function Home(context) {
     render({
@@ -8,14 +9,22 @@ export function Home(context) {
         children: [
             {
                 type: Header,
+                props: {style: 'background-color: #422331;flex:1'}
             },
             {
                 type: 'div', props: {style: 'background-color: #422331;flex:1'},
                 children: [
                     'Home'
                 ]
+            },
+            {
+                type: 'input',
+                props: {
+                    onChange: (e) => {
+                        Store.changeState('AppName', e.target.value)
+                    }
+                }
             }
         ]
     }, context);
 }
-

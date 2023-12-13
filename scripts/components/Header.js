@@ -1,15 +1,22 @@
 import {Store} from '../Redux.js'
-import { render } from '../h.js'
-export function Header(context) {
-    let appName;
+import {render} from '../h.js'
+
+export function Header(context, props) {
+    let appName = 'App Name';
+    const draw = () => {
+        render({type: 'h3', props: {onClick: click}, children: [appName]}, context);
+    }
     const click = () => {
         console.log('click')
-        Store.changeState('AppName', 'hello')
+        appName = 'New Name';
+        draw()
     }
+
     Store.getState('AppName').subscribe(v => {
         appName = v;
-        render({type: 'h3', props: {onClick: click}, children: [appName]}, context);
+        draw();
     });
-    render({type: 'h3', props: {onClick: click}, children: [appName]}, context);
+
+    draw();
 }
 
